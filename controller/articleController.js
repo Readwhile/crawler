@@ -16,26 +16,22 @@ exports.getArticleById = async (req, res) => {
 };
 
 exports.add = (req, res) => {
-  const url = req.body.url;
+  const { url } = req.body;
   const article = new Article({ url });
   article.save();
   return res.json({ _id: article._id });
 };
 
 exports.search = async (req, res) => {
-  const { query } = req.query;
+  const query = req.query.q;
+  console.log(query);
   if (query) {
-    const articles = await article.find(
-      {
-        $text: {
-          $search: req.query.q
-        }
-      },
-      {
-        score: { $meta: 'textscore' }
+    const articles = await Article.find({
+      $text: {
+        $search: query
       }
-    );
-    res.json(articles);
+    });
+    return res.json(articles);
   }
-  res.json({});
+  return res.json({});
 };

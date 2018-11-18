@@ -5,7 +5,7 @@ const articleController = require('../controller/articleController');
 
 router.get('/status', articleController.status);
 router.post('/add', articleController.add);
-router.get('/:_id', articleController.getArticleById);
 router.get('/search', articleController.search);
+router.get('/:_id', articleController.getArticleById);
 
 module.exports = router;
