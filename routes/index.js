@@ -4,8 +4,9 @@ const router = express.Router();
 const articleController = require('../controller/articleController');
 
 router.get('/status', articleController.status);
-router.post('/add', articleController.add);
+router.post('/article/add', articleController.add);
+router.post('/article/delete/:_id', articleController.delete);
+router.get('/article/:_id', articleController.getArticleById);
 router.get('/search', articleController.search);
-router.get('/:_id', articleController.getArticleById);
 
 module.exports = router;

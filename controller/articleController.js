@@ -15,6 +15,11 @@ exports.getArticleById = async (req, res) => {
   return res.json(article);
 };
 
+exports.delete = async (req, res) => {
+  return res.json(await Article.findOneAndRemove({ _id: req.params._id }));
+  return res.json({ deleted: req.params._id });
+};
+
 exports.add = (req, res) => {
   const { url } = req.body;
   const article = new Article({ url });
